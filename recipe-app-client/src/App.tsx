@@ -1,9 +1,27 @@
 import React from 'react';
+import { NavLink, Outlet } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="flex">
-      hellow world!
+    <div className='flex flex-col'>
+      <div className='flex'>
+        <NavLink
+          to={"/"}
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to={"/recipes"}
+        >
+          Recipes
+        </NavLink>
+        <NavLink
+          to={"/history"}
+        >
+          History
+        </NavLink>
+      </div>
+      <Outlet />
     </div>
   );
 }
