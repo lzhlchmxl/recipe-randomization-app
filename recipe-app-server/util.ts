@@ -26,3 +26,4 @@ export function foodTypeMatchCheck(type1: T.FoodType, type2: T.FoodType): boolea
 
   return type1 === type2;
 }
+

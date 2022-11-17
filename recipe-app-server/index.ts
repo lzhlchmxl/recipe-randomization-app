@@ -29,8 +29,6 @@ app.get('/api/recipe-list', async (_req, res) => {
         return {id, name, foodType, prepTimeInSeconds};
     });
 
-    console.log(recipeHeaders)
-
     res.send(recipeHeaders);
 });
 
@@ -61,35 +59,35 @@ app.post('/api/recipe-list/create', async (req, res) => {
 
     await writeDatabase(database);
 
-    res.send({id});
+    res.send(id);
 })
 
 /*
-    GET /recipe-details/id
+    GET /recipe-list:id
     Description: retrieve a list of recipe headers from server
     Request body: no request body
     Response body: RecipeDetail
 */
-app.get('/api/recipe-details/:recipeId', async (req, res) => {
+app.get('/api/recipe-list/:recipeId', async (req, res) => {
     const database = await readDatabase();
 
     const recipe: T.RecipeDetail | undefined = database.recipes.find( recipe => recipe.id === req.params.recipeId)
 
     if (recipe === undefined) {
         res.status(204).send();
-        throw new Error;
+        console.log(`the requested recipe is not found in the database`);
     }
 
     res.send(recipe); // Note: still has the type Recipe instead of RecipeDetail, though the two types are identical
 });
 
 /*  
-    PUT /recipe-details/edit/id
+    PUT /recipe-list/edit/id
     Description: edit an recipe with given ID and update the recipe with given information
     Request body: RecipeDetail 
     Response body: no response body
 */
-app.put('/api/recipe-details/edit/:recipeId', async (req, res) => {
+app.put('/api/recipe-list/edit/:recipeId', async (req, res) => {
     const database = await readDatabase();
 
     const recipe = database.recipes.find( recipe => recipe.id === req.params.recipeId);
@@ -118,7 +116,7 @@ app.put('/api/recipe-details/edit/:recipeId', async (req, res) => {
     Request body: selected recipe id {id: string}
     Response body: no response body
 */
-app.delete('/api/recipe-details/:recipeId', async (req, res) => {
+app.delete('/api/recipe-list/:recipeId', async (req, res) => {
     
     const database = await readDatabase();
 

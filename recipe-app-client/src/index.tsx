@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import RecipePage from './RecipePage';
 import reportWebVitals from './reportWebVitals';
 import "./index.css"
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import RecipeDetails from './RecipeDetails';
+import CreateRecipe from './CreateRecipe';
+import EditRecipe from './EditRecipe';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -14,7 +18,12 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<div>This is home page</div>} />
-          <Route path="recipes" element={<div>This is recipes page</div>} />
+          <Route path="recipe-list" element={<RecipePage />} >
+            <Route index element={<div>Please select a recipe from the list</div>} />
+            <Route path=":recipeId" element={<RecipeDetails />} />
+            <Route path="create" element={<CreateRecipe />} />
+            <Route path="edit" element={<EditRecipe />} />
+          </Route>
           <Route path="/history" element={<div>This is history page</div>} />
         </Route>
       </Routes>

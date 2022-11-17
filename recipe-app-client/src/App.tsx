@@ -11,7 +11,7 @@ function App() {
           Home
         </NavLink>
         <NavLink
-          to={"/recipes"}
+          to={"/recipe-list"}
         >
           Recipes
         </NavLink>

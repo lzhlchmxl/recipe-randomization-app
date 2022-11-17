@@ -8,13 +8,17 @@ export type FoodType = "meat" | "veggie" | "mixed";
 
 export type Recipe = {
   id: RecipeId,
-} & NewRecipe;
-
-export type NewRecipe = {
   name: string,
   foodType: FoodType,
   prepTimeInSeconds: number,
-  description: string
+  description: string,
+}
+
+export type NewRecipe = {
+  name: string | null,
+  foodType: FoodType | null,
+  prepTimeInSeconds: number | null,
+  description: string | null,
 }
 
 export type RecipeId = string
