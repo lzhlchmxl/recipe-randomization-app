@@ -44,7 +44,11 @@ function RecipeDetails() {
         <div>{ recipeDetails.description }</div>
       </div>
       <div className="flex">
-        <button>Edit</button>
+        <Link
+          to={`/recipe-list/edit/${recipeDetails.id}`}
+        >
+          Edit
+        </Link>
         <Link
           className="sm:hidden"
           to={'/recipe-list'}

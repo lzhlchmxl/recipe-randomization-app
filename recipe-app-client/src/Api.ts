@@ -42,7 +42,7 @@ export async function deleteRecipeById(id: T.RecipeId): Promise<number> {
 
 export async function createRecipe(newRecipe: T.NewRecipe): Promise<T.RecipeId> {
 
-  // TODO clean this up
+  // TODO clean this up somehow, samething in editRecipe function
   if (newRecipe.description === null || newRecipe.foodType === null || newRecipe.name === null || newRecipe.prepTimeInSeconds === null) {
     alert("Can't create recipe with unfilled fields");
   }
@@ -62,6 +62,27 @@ export async function createRecipe(newRecipe: T.NewRecipe): Promise<T.RecipeId> 
   const recipeId: T.RecipeId = await response.json();
 
   return recipeId;
+}
+
+export async function editRecipe(recipe: T.RecipeDetail): Promise<number> {
+
+  if (recipe.description === null || recipe.foodType === null || recipe.name === null || recipe.prepTimeInSeconds === null) {
+    alert("Can't create recipe with unfilled fields");
+  }
+
+  const requestOptions = {
+    method: 'put',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(recipe)
+  }
+
+  const response = await fetch(`/api/recipe-list/edit/${recipe.id}`, requestOptions);
+
+  if (response.status !== 204) {
+    throw new Error(`/api/recipe-list/create returned HTTP status code: ${response.status}`)
+  }
+
+  return response.status;
 }
 
 

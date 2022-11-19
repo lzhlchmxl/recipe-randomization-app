@@ -45,11 +45,11 @@
 			"id": "0.3882238932668274"
 		},
 		{
-			"id": "0.36108353307083974",
+			"id": "0.1325624173932911",
 			"name": "t0",
-			"foodType": "mixed",
-			"prepTimeInSeconds": 7380,
-			"description": "edsasdt0"
+			"foodType": "veggie",
+			"prepTimeInSeconds": 0,
+			"description": "t0"
 		}
 	],
 	"histories": [

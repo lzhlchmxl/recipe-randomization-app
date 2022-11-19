@@ -22,7 +22,7 @@ root.render(
             <Route index element={<div>Please select a recipe from the list</div>} />
             <Route path=":recipeId" element={<RecipeDetails />} />
             <Route path="create" element={<CreateRecipe />} />
-            <Route path="edit" element={<EditRecipe />} />
+            <Route path="edit/:recipeId" element={<EditRecipe />} />
           </Route>
           <Route path="/history" element={<div>This is history page</div>} />
         </Route>

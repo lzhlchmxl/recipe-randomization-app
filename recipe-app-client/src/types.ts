@@ -14,11 +14,19 @@ export type Recipe = {
   description: string,
 }
 
+export type EmptyRecipe = {
+  name: null,
+  foodType: null,
+  prepTimeInSeconds: null,
+  description: null,
+}
+
+
 export type NewRecipe = {
-  name: string | null,
-  foodType: FoodType | null,
-  prepTimeInSeconds: number | null,
-  description: string | null,
+  name: string,
+  foodType: FoodType,
+  prepTimeInSeconds: number,
+  description: string,
 }
 
 export type RecipeId = string
