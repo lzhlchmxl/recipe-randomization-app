@@ -40,7 +40,7 @@ export async function deleteRecipeById(id: T.RecipeId): Promise<number> {
   return response.status;
 }
 
-export async function createRecipe(newRecipe: T.NewRecipe): Promise<T.RecipeId> {
+export async function createRecipe(newRecipe: T.RecipeFormData): Promise<T.RecipeId> {
 
   // TODO clean this up somehow, samething in editRecipe function
   if (newRecipe.description === null || newRecipe.foodType === null || newRecipe.name === null || newRecipe.prepTimeInSeconds === null) {

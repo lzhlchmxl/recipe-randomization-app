@@ -14,21 +14,6 @@ export type Recipe = {
   description: string,
 }
 
-export type EmptyRecipe = {
-  name: null,
-  foodType: null,
-  prepTimeInSeconds: null,
-  description: null,
-}
-
-
-export type NewRecipe = {
-  name: string,
-  foodType: FoodType,
-  prepTimeInSeconds: number,
-  description: string,
-}
-
 export type RecipeId = string
 
 export type History = {
@@ -43,7 +28,7 @@ type NewHistory = {
 }
 
 
-// API endpoints Types
+// API Endpoints Types
 export type RecipeHeader = {
   id: RecipeId,
   name: string,
@@ -64,8 +49,16 @@ export type RandomizerParam = {
 	selectedFoodType: FoodType,
 }
 
+// UI Types
+export type RecipeFormData = {
+  name: string,
+  foodType: FoodType,
+  prepTimeInSeconds: number,
+  description: string,
+}
+
 export type Duration = {
-  hours: number | null,
-  minuets: number | null,
-  seconds: number | null,
+  hours: number,
+  minuets: number,
+  seconds: number,
 }

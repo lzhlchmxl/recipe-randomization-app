@@ -1,7 +1,7 @@
 import * as T from "./types";
 import { useState } from "react";
-import * as util from "./util";
 import { Link } from "react-router-dom";
+import DurationPicker from "./DurationPicker";
 
 function RecipeForm({
     initialRecipe,
@@ -12,29 +12,18 @@ function RecipeForm({
   }
   : 
   {
-    initialRecipe: T.RecipeDetail | null,
+    initialRecipe: T.RecipeFormData | null,
     cancelText: string,
     cancelLink: string,
     actionText: string,
-    actionCallback: (recipe: T.RecipeDetail | T.NewRecipe) => void,
+    actionCallback: (recipe: T.RecipeFormData) => void,
 
   }) {
 
-  const emptyRecipe: T.EmptyRecipe = {
-    name: null,
-    prepTimeInSeconds: null,
-    foodType: null,
-    description: null,
-  }
-
-  const emptyDuration: T.Duration = {
-    hours: null,
-    minuets: null,
-    seconds: null,
-  }
-
-  const [recipe, setRecipe] = useState<T.RecipeDetail | T.EmptyRecipe | T.NewRecipe>(initialRecipe === null ? emptyRecipe : initialRecipe);
-  const [duration, setDuration] = useState<T.Duration>(initialRecipe === null ? emptyDuration : util.secondsToDuration(initialRecipe.prepTimeInSeconds));
+  const [name, setName] = useState(initialRecipe ? initialRecipe.name : "");
+  const [description, setDescription] = useState(initialRecipe ? initialRecipe.description : "");
+  const [foodType, setFoodType] = useState<T.FoodType | "default">(initialRecipe ? initialRecipe.foodType : "default");
+  const [prepTimeInSeconds, setPrepTimeInSeconds] = useState(initialRecipe ? initialRecipe.prepTimeInSeconds : 0);
 
   return (
     <div className="flex flex-col">
@@ -42,77 +31,51 @@ function RecipeForm({
         <label>
           Name:
           <input 
-            defaultValue={recipe.name ? recipe.name : undefined}
+            defaultValue={name}
             type={"text"}
-            onChange={ (e) => util.setState(setRecipe, "name", e.target.value)}
+            onChange={ (e) => setName(e.target.value)}
           />
         </label>
-        <label>
-          Preparation Time:
-          H:
-          <input
-            defaultValue={duration.hours ? duration.hours : undefined}
-            className="w-10"
-            type={"number"}
-            min={0}
-            max={24}
-            onChange={ (e) => util.setState(setDuration, "hours", e.target.valueAsNumber)}
-          />
-          M:
-          <input 
-            defaultValue={duration.minuets ? duration.minuets : undefined}
-            className="w-10"
-            type={"number"}
-            min={0}
-            max={60}
-            onChange={ (e) => util.setState(setDuration, "minuets", e.target.valueAsNumber)}
-          />
-          S:
-          <input
-            defaultValue={duration.seconds ? duration.seconds : undefined}
-            className="w-10" 
-            type={"number"}
-            min={0}
-            max={60}
-            onChange={ (e) => util.setState(setDuration, "seconds", e.target.valueAsNumber)}
-            
-          />
-        </label>
+        
         <label>
           Food Type:
           <select
-            value={recipe.foodType === null ? "default" : recipe.foodType}
-            onChange={ (e) => util.setState(setRecipe,"foodType", e.target.value as T.FoodType)}
+            value={foodType === undefined ? "default" : foodType}
+            onChange={ (e) => setFoodType(e.target.value as T.FoodType | "default")}
           > 
-            <option disabled value="default">- select -</option>
+            <option value="default">- select -</option>
             <option value="meat">Meat</option>
             <option value="veggie">Veggie</option>
             <option value="mixed">Mixed</option>
           </select>
         </label>
-
+        <DurationPicker 
+          initialTotalSeconds={prepTimeInSeconds}
+          setPrepTimeInSeconds={ (seconds) => {
+            setPrepTimeInSeconds(seconds);
+          }}
+        />
         <label>
           Description:
           <input 
-            defaultValue={recipe.description ? recipe.description : undefined}
+            defaultValue={description}
             type={"text"}
-            onChange={ (e) => util.setState(setRecipe, "description", e.target.value)}
+            onChange={ (e) => setDescription(e.target.value)}
           />
         </label>
       </div>
       <div className="flex">
         <div
           onClick={ () => {
-            const recipeClone = {
-              ...recipe,
-              prepTimeInSeconds: util.durationToSeconds(duration),
-            }
-
-            if (recipeClone.description === null || recipeClone.foodType === null || recipeClone.name === null || recipeClone.prepTimeInSeconds === null) {
+            if (name === "" ||
+                foodType === "default" ||
+                prepTimeInSeconds === 0 ||
+                description === "") {
               alert("Please fill all the fields.")
               throw new Error("Cannot create recipe with incomplete information");
             }
-            return actionCallback(recipeClone);
+
+            return actionCallback({name, foodType, prepTimeInSeconds, description});
           } }
         >
           {actionText}

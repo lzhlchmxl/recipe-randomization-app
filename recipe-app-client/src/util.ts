@@ -51,13 +51,11 @@ export function durationToSeconds(duration: T.Duration): number {
 
 export function secondsToDuration(seconds: number): T.Duration {
 
-  console.log(seconds);
-
-  const hours = seconds % 3600;
+  const hours = Math.floor(seconds / 3600);
 
   let remainingSeconds = seconds - hours * 3600;
 
-  const minuets = remainingSeconds % 60;
+  const minuets = Math.floor(remainingSeconds / 60);
 
   remainingSeconds = remainingSeconds - minuets * 60;
 

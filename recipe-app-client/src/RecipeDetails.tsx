@@ -10,18 +10,13 @@ function RecipeDetails() {
 
   const recipeDetailsAsync = useAsync(() => getRecipeDetails(selectedRecipeId), [selectedRecipeId]);
   
-  // Note: something feels off about this solution
   const tryDelete = async () => {
-    // try {
-      const deletionStatusCode = await deleteRecipeById(selectedRecipeId);
-      if (deletionStatusCode === 204) {
-        window.location.pathname = "/recipe-list";
-      } else {
-        alert("something went wrong, the deletion did not go through")
-      }
-    // } catch(err) {
-    //   alert("something went wrong, the deletion did not go through")
-    // }
+    const deletionStatusCode = await deleteRecipeById(selectedRecipeId);
+    if (deletionStatusCode === 204) {
+      window.location.pathname = "/recipe-list";
+    } else {
+      alert("something went wrong, the deletion did not go through")
+    }
   }
 
   if ( recipeDetailsAsync.status === "pending" ) {
