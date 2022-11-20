@@ -2,6 +2,7 @@ import * as T from "./types";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import DurationPicker from "./DurationPicker";
+import FoodTypeSelector from "./FoodTypeSelector";
 
 function RecipeForm({
     initialRecipe,
@@ -39,22 +40,31 @@ function RecipeForm({
         
         <label>
           Food Type:
-          <select
-            value={foodType === undefined ? "default" : foodType}
+          <FoodTypeSelector 
+            value={foodType}
+            setFoodType={ foodType => {
+              setFoodType(foodType);
+            }}
+          />
+          {/* <select
+            value={foodType}
             onChange={ (e) => setFoodType(e.target.value as T.FoodType | "default")}
           > 
             <option value="default">- select -</option>
             <option value="meat">Meat</option>
             <option value="veggie">Veggie</option>
             <option value="mixed">Mixed</option>
-          </select>
+          </select> */}
         </label>
-        <DurationPicker 
-          initialTotalSeconds={prepTimeInSeconds}
-          setPrepTimeInSeconds={ (seconds) => {
-            setPrepTimeInSeconds(seconds);
-          }}
-        />
+        <label>
+          Prep Time:
+          <DurationPicker 
+            initialTotalSeconds={prepTimeInSeconds}
+            setPrepTimeInSeconds={ (seconds) => {
+              setPrepTimeInSeconds(seconds);
+            }}
+          />
+        </label>
         <label>
           Description:
           <input 

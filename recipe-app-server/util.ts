@@ -18,12 +18,12 @@ export function recipeIdsToNames(recipeIds: T.RecipeId[], recipes: T.Recipe[]): 
   return recipeNames;
 }
 
-// Returns true if the two food types are the same, and vice versa
-export function foodTypeMatchCheck(type1: T.FoodType, type2: T.FoodType): boolean {
-  if (type2 === "mixed") {
+// if filterType is mixed, meat, veggie or mixed recipes can match; but if filter type is meat/veggie, mixed recipes should'nt match.
+export function foodTypeMatchCheck(recipeType: T.FoodType, filterType: T.FoodType): boolean {
+  if (filterType === "mixed") {
     return true;
   } 
 
-  return type1 === type2;
+  return recipeType === filterType;
 }
 

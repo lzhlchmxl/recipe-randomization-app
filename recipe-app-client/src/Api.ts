@@ -42,11 +42,6 @@ export async function deleteRecipeById(id: T.RecipeId): Promise<number> {
 
 export async function createRecipe(newRecipe: T.RecipeFormData): Promise<T.RecipeId> {
 
-  // TODO clean this up somehow, samething in editRecipe function
-  if (newRecipe.description === null || newRecipe.foodType === null || newRecipe.name === null || newRecipe.prepTimeInSeconds === null) {
-    alert("Can't create recipe with unfilled fields");
-  }
-
   const requestOptions = {
     method: 'post',
     headers: { 'Content-Type': 'application/json' },
@@ -66,10 +61,6 @@ export async function createRecipe(newRecipe: T.RecipeFormData): Promise<T.Recip
 
 export async function editRecipe(recipe: T.RecipeDetail): Promise<number> {
 
-  if (recipe.description === null || recipe.foodType === null || recipe.name === null || recipe.prepTimeInSeconds === null) {
-    alert("Can't create recipe with unfilled fields");
-  }
-
   const requestOptions = {
     method: 'put',
     headers: { 'Content-Type': 'application/json' },
@@ -83,6 +74,25 @@ export async function editRecipe(recipe: T.RecipeDetail): Promise<number> {
   }
 
   return response.status;
+}
+
+export async function randomizeRecipes(randomizerParam: T.RandomizerParam): Promise<T.Recipe[]> {
+
+  const requestOptions = {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(randomizerParam)
+  }
+
+  const response = await fetch(`/api/randomize`, requestOptions);
+
+  if (response.status !== 200) {
+    throw new Error(`/api/randomize returned HTTP status code: ${response.status}`)
+  }
+
+  const recipes: T.Recipe[] = await response.json();
+
+  return recipes;
 }
 
 

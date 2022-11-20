@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import RecipeDetails from './RecipeDetails';
 import CreateRecipe from './CreateRecipe';
 import EditRecipe from './EditRecipe';
+import HomePage from './HomePage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,7 +18,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route index element={<div>This is home page</div>} />
+          <Route index element={<HomePage />} />
           <Route path="recipe-list" element={<RecipePage />} >
             <Route index element={<div>Please select a recipe from the list</div>} />
             <Route path=":recipeId" element={<RecipeDetails />} />
