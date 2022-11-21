@@ -42,19 +42,8 @@ function RecipeForm({
           Food Type:
           <FoodTypeSelector 
             value={foodType}
-            setFoodType={ foodType => {
-              setFoodType(foodType);
-            }}
+            setSelectedFoodType={ setFoodType}
           />
-          {/* <select
-            value={foodType}
-            onChange={ (e) => setFoodType(e.target.value as T.FoodType | "default")}
-          > 
-            <option value="default">- select -</option>
-            <option value="meat">Meat</option>
-            <option value="veggie">Veggie</option>
-            <option value="mixed">Mixed</option>
-          </select> */}
         </label>
         <label>
           Prep Time:

@@ -1,18 +1,19 @@
+import { useEffect, useState } from "react";
 import * as T from "./types";
 
 function FoodTypeSelector(
-  {value, setFoodType}
+  {value, setSelectedFoodType}
   :
   {
     value: T.FoodType | "default",
-    setFoodType: (selectedFoodType: T.FoodType | "default") => void,
+    setSelectedFoodType: (selectedFoodType: T.FoodType | "default") => void,
   }
 ) {
 
   return (
     <select
       value={value}
-      onChange={ (e) => setFoodType(e.target.value as T.FoodType | "default")}
+      onChange={ (e) => setSelectedFoodType(e.target.value as T.FoodType | "default")}
     > 
       <option value="default">- select -</option>
       <option value="meat">Meat</option>

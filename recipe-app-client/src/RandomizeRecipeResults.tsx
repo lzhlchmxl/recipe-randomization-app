@@ -4,22 +4,13 @@ import ErrorIndicator from "./ErrorIndicator";
 import LoadingIndicator from "./LoadingIndicator";
 import * as T from "./types";
 
-function RecipeRandomizationResults(
-  {
-    refreshKey,
-    prepTimeLimitInSecounds,
-    selectedFoodType,
-  }
+function RandomizedRecipeResults(
+  { randomizerParam }
   :
-  {
-    refreshKey: string,
-    prepTimeLimitInSecounds: number,
-    selectedFoodType: T.FoodType,
-  }
+  { randomizerParam: T.RandomizerParam }
 ) {
 
-
-  const recipeRandomizationResultsAsync = useAsync(() => randomizeRecipes({prepTimeLimitInSecounds, selectedFoodType}), [refreshKey]); // eslint-disable-line
+  const recipeRandomizationResultsAsync = useAsync(() => randomizeRecipes(randomizerParam), [randomizerParam]); // eslint-disable-line
   
   if (recipeRandomizationResultsAsync.status === "pending") {
     return <LoadingIndicator />;
@@ -52,4 +43,4 @@ function RecipeRandomizationResults(
   )
 }
 
-export default RecipeRandomizationResults;
+export default RandomizedRecipeResults;
