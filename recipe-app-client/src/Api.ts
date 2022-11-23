@@ -95,5 +95,34 @@ export async function randomizeRecipes(randomizerParam: T.RandomizerParam): Prom
   return recipes;
 }
 
+export async function getHistoryList(): Promise<T.HistoryHeader[]> {
+
+  const response = await fetch('/api/history-list');
+
+  if (response.status !== 200) {
+    throw new Error(`/api/history-list returned HTTP status code: ${response.status}`)
+  }
+
+  const historyHeaders: T.HistoryHeader[] = await response.json();
+
+  return historyHeaders;
+}
+
+export async function createHistory(recipeIds: T.RecipeId[]): Promise<number> {
+  
+  const requestOptions = {
+    method: "post",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(recipeIds)
+  }
+
+  const response = await fetch(`/api/history/create`, requestOptions);
+
+  if (response.status !== 204) {
+    throw new Error(`/api/history/create returned HTTP status code: ${response.status}`)
+  }
+
+  return response.status;
+}
 
 

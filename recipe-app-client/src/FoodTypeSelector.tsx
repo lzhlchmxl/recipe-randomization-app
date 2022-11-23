@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import * as T from "./types";
 
 function FoodTypeSelector(

@@ -9,6 +9,7 @@ import RecipeDetails from './RecipeDetails';
 import CreateRecipe from './CreateRecipe';
 import EditRecipe from './EditRecipe';
 import HomePage from './HomePage';
+import HistoryPage from './HistoryPage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -25,7 +26,7 @@ root.render(
             <Route path="create" element={<CreateRecipe />} />
             <Route path="edit/:recipeId" element={<EditRecipe />} />
           </Route>
-          <Route path="/history" element={<div>This is history page</div>} />
+          <Route path="/history" element={<HistoryPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

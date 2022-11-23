@@ -10,7 +10,7 @@ export function recipeIdsToNames(recipeIds: T.RecipeId[], recipes: T.Recipe[]): 
   const recipeNames = recipeIds.map( recipeId => {
     const recipe = recipes.find( recipe => recipe.id === recipeId);
     if (recipe === undefined) {
-      throw new Error;
+      return "Recipe Deleted"
     }
     return recipe.name;
   })

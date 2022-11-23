@@ -1,6 +1,10 @@
 import * as T from "./types";
 
-export function sortObjectsByProperty(arr: { [key: string]: any }[], sortByKey: string) {
+// TODO: commented line below is my best attempt
+// export function sortObjectsByProperty<T, K extends keyof T>(arr: { [key: K]: T }[], sortByKey: K) {
+
+// ascending by default
+export function sortObjectsByProperty(arr: { [key: string]: any }[], sortByKey: string, isDscending?: boolean) {
 
   arr.sort( (o1, o2) => {
     const v1 = o1[sortByKey];
@@ -11,10 +15,10 @@ export function sortObjectsByProperty(arr: { [key: string]: any }[], sortByKey: 
     }
 
     if (v1 < v2) {
-      return -1;
+      return isDscending ? 1 : -1;
     }
 
-    return 1;
+    return isDscending ? -1 : 1;
   })
 
   return arr;

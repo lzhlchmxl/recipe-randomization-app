@@ -179,7 +179,7 @@ app.post('/api/history/create', async (req, res) => {
 
     const database = await readDatabase();
 
-    const { recipeIds }: {recipeIds: T.RecipeId[]} = req.body;
+    const recipeIds: T.RecipeId[] = req.body;
 
     const id = util.generateId();
 

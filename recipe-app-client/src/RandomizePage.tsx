@@ -1,12 +1,7 @@
 import { useState } from "react";
-import { randomizeRecipes } from "./Api";
-import { useAsync } from "./CustomHooks";
 import DurationPicker from "./DurationPicker";
 import FoodTypeSelector from "./FoodTypeSelector";
-import ErrorIndicator from "./ErrorIndicator";
-import LoadingIndicator from "./LoadingIndicator";
 import * as T from "./types";
-import { NavLink } from "react-router-dom";
 import RandomizedRecipeResults from "./RandomizeRecipeResults";
 
 function RandomizePage() {
@@ -14,8 +9,7 @@ function RandomizePage() {
   const [prepTimeLimitInSecounds, setPrepTimeLimitInSeconds] = useState(0);
   const [selectedFoodType, setSelectedFoodType] = useState<T.FoodType | "default">("default");
 
-  const [randomizerParam, setRandomizerParam] = useState<T.RandomizerParam | null>(null);
-  
+  const [randomizerParam, setRandomizerParam] = useState<T.RandomizerParam | null>(null);  
 
   const randomierResults = () => {
     if (randomizerParam === null) {
@@ -60,14 +54,6 @@ function RandomizePage() {
       >
         What to Eat
       </button>
-      <NavLink
-        // onClick={ () => {
-        //   tryCreateHistory
-        // }}
-        to='/history'
-      >
-        Confirm
-      </NavLink>
     </div>
   )
 }
