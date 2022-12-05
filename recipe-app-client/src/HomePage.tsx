@@ -4,7 +4,7 @@ function HomePage() {
 
   return (
     <div className="flex flex-col">
-      <div className="text-lg">Welcome to Bill's Recipe Place</div>
+      <div className="text-lg">Let's figure out what we are having today</div>
       <RandomizePage />
     </div>
   )

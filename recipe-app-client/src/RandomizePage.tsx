@@ -3,6 +3,7 @@ import DurationPicker from "./DurationPicker";
 import FoodTypeSelector from "./FoodTypeSelector";
 import * as T from "./types";
 import RandomizedRecipeResults from "./RandomizeRecipeResults";
+import Button from "./Button";
 
 function RandomizePage() {
 
@@ -13,7 +14,8 @@ function RandomizePage() {
 
   const randomierResults = () => {
     if (randomizerParam === null) {
-      return <div>Please enter search parameters</div>
+      // return <div>Please enter search parameters</div>
+      return;
     } 
     return (
       <RandomizedRecipeResults 
@@ -22,38 +24,46 @@ function RandomizePage() {
     )
   }
 
+  const handleSetRandomizerParam = () => {
+    if (prepTimeLimitInSecounds <= 0 || selectedFoodType === "default") {
+      alert("Please enter valid inputs");
+      throw new Error("ranomizer param invalid")
+    }
+    const newParam = {
+      prepTimeLimitInSecounds, 
+      selectedFoodType,
+    }
+    setRandomizerParam(newParam);
+  }
+
   return (
     <div className="flex flex-col">
-      <label>
-        Prep Time:
+      <label
+        className="mt-3 mb-3"
+      >
+        Preparation Time:
+        <br />
         <DurationPicker
           initialTotalSeconds={0}
           setPrepTimeInSeconds={ setPrepTimeLimitInSeconds }
         />
       </label>
-      <label>
+      <label
+        className="mb-3"
+      >
         Food Type:
+        <br />
         <FoodTypeSelector 
           value={selectedFoodType}
           setSelectedFoodType={ setSelectedFoodType }
         />
       </label>
+      <Button 
+        buttonText="generate"
+        type="primary"
+        onClick={ () => handleSetRandomizerParam()}
+      />
       {randomierResults()}
-      <button
-        onClick={ () => {
-          if (prepTimeLimitInSecounds <= 0 || selectedFoodType === "default") {
-            alert("Please enter valid inputs");
-            throw new Error("ranomizer param invalid")
-          }
-          const newParam = {
-            prepTimeLimitInSecounds, 
-            selectedFoodType,
-          }
-          setRandomizerParam(newParam);
-        }}
-      >
-        What to Eat
-      </button>
     </div>
   )
 }

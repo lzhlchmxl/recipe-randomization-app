@@ -61,14 +61,15 @@ function RandomizedRecipeResults(
 
   return (
     <div>
+      <p>Suggested Recipes ({recipeList.length})</p>
       {recipeList}
-      {/* TODO: the UI below is not desirable and should be fixed later*/}
+
       <button
         onClick={ () => 
           tryCreateHistory()
         }
       >
-        Confirm
+        Looks Good! 
       </button>
     </div>
   )
