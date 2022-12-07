@@ -59,6 +59,5 @@ export type RecipeFormData = {
 
 export type Duration = {
   hours: number,
-  minuets: number,
-  seconds: number,
+  minutes: number,
 }

@@ -2,20 +2,20 @@
 function Button(
   {
     buttonText,
-    buttonIcon,
+    // buttonIcon,
     type,
     onClick,
   }
   :
   {
     buttonText: string,
-    buttonIcon?: string,
+    // buttonIcon?: string,
     type: "primary" | "action",
     onClick: () => void,
   }
 ) {
 
-  const className = `rounded-sm text-white bg-green-400 w-fit px-5 py-2`
+  const className = `rounded-3xl text-white bg-green-400 w-fit px-5 py-2 capitalize`
 
   return (
     <button
@@ -23,7 +23,7 @@ function Button(
       onClick={onClick}
     >
       {buttonText}
-      {buttonIcon !== undefined && buttonIcon}
+      {/* {buttonIcon !== undefined && buttonIcon} */}
     </button>
   )
 }

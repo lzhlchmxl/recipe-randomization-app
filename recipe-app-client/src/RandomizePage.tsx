@@ -37,32 +37,43 @@ function RandomizePage() {
   }
 
   return (
-    <div className="flex flex-col">
-      <label
-        className="mt-3 mb-3"
+    <div className="flex flex-col items-center">
+      {/* TODO: this should prob be a component */}
+      <div className="flex justify-between items-center 
+                      bg-gradient-to-r from-gray-100 via-gray-200 to-yellow-200 rounded-xl
+                      text-gray-600 font-semibold 
+                      h-10 my-5 w-full
+                      "
       >
-        Preparation Time:
-        <br />
-        <DurationPicker
-          initialTotalSeconds={0}
-          setPrepTimeInSeconds={ setPrepTimeLimitInSeconds }
-        />
-      </label>
-      <label
-        className="mb-3"
+        <p className="pl-5">Preparation Time:</p>
+        <div className="pr-5">
+          <DurationPicker
+            initialTotalSeconds={0}
+            setPrepTimeInSeconds={ setPrepTimeLimitInSeconds }
+          />
+        </div>
+      </div>
+      <div className="flex justify-between items-center 
+                      bg-gradient-to-r from-gray-100 via-gray-200 to-yellow-200 rounded-xl
+                      text-gray-700 font-semibold 
+                      h-10 my-5 w-full
+                      "
       >
-        Food Type:
-        <br />
-        <FoodTypeSelector 
-          value={selectedFoodType}
-          setSelectedFoodType={ setSelectedFoodType }
+        <p className="pl-5">Food Type:</p>
+        <div className="pr-5">
+          <FoodTypeSelector 
+            value={selectedFoodType}
+            setSelectedFoodType={ setSelectedFoodType }
+          />
+        </div>
+      </div>
+      <div className="mt-5">
+        <Button 
+          buttonText="generate"
+          type="primary"
+          onClick={ () => handleSetRandomizerParam()}
         />
-      </label>
-      <Button 
-        buttonText="generate"
-        type="primary"
-        onClick={ () => handleSetRandomizerParam()}
-      />
+      </div>
       {randomierResults()}
     </div>
   )

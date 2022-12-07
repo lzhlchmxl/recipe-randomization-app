@@ -16,20 +16,20 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<HomePage />} />
-          <Route path="recipe-list" element={<RecipePage />} >
-            <Route index element={<div>Please select a recipe from the list</div>} />
-            <Route path=":recipeId" element={<RecipeDetails />} />
-            <Route path="create" element={<CreateRecipe />} />
-            <Route path="edit/:recipeId" element={<EditRecipe />} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route index element={<HomePage />} />
+            <Route path="recipe-list" element={<RecipePage />} >
+              <Route index element={<div>Please select a recipe from the list</div>} />
+              <Route path=":recipeId" element={<RecipeDetails />} />
+              <Route path="create" element={<CreateRecipe />} />
+              <Route path="edit/:recipeId" element={<EditRecipe />} />
+            </Route>
+            <Route path="/history" element={<HistoryPage />} />
           </Route>
-          <Route path="/history" element={<HistoryPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
   </React.StrictMode>
 );
 

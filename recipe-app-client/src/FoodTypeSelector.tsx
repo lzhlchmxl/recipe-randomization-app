@@ -11,6 +11,7 @@ function FoodTypeSelector(
 
   return (
     <select
+      className="w-[93px] rounded-md"
       value={value}
       onChange={ (e) => setSelectedFoodType(e.target.value as T.FoodType | "default")}
     > 
