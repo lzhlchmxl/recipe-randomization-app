@@ -1,13 +1,12 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { ReactComponent as HomeIcon } from './assets/home_icon.svg';
-import { ReactComponent as RecipesIcon } from './assets/menu_icon.svg';
-import { ReactComponent as HistoryIcon } from './assets/history_icon.svg';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faKey, faBook, faClockRotateLeft  } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
 
   return (
     <div className='flex flex-col h-screen bg-yellow-500'>
-      <div className='flex flex-col p-5 h-full bg-gradient-to-r from-white via-white to-yellow-50 rounded-b-3xl'>
+      <div className='flex flex-col p-5 overflow-y-auto h-[calc(100%-50px)] bg-gradient-to-r from-white via-white to-yellow-50 rounded-b-3xl'>
         <div className='hidden sm:flex'>
           <NavLink
             to={"/"}
@@ -27,23 +26,24 @@ function App() {
         </div>
         <Outlet />
       </div>
-      <div className='flex justify-between my-3 sm:hidden'>
+      <div className='flex justify-between sm:hidden text-gray-100 text-4xl p-1 mt-[3px]'>
           <button
+            className='flex items-center'
             onClick={ () => window.location.href = '/'}
           >
-            <HomeIcon 
-              style={ { color: "white" } }
-            />
+            <FontAwesomeIcon icon={faKey} />
           </button>
           <button
+            className='flex items-center'
             onClick={ () => window.location.href = '/recipe-list'}
           >
-            <RecipesIcon />
+            <FontAwesomeIcon icon={faBook} />
           </button>
           <button
+            className='flex items-center'
             onClick={ () => window.location.href = '/history'}
           >
-            <HistoryIcon />
+            <FontAwesomeIcon icon={faClockRotateLeft} />
           </button>
       </div>
     </div>

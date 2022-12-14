@@ -12,18 +12,6 @@ function RandomizePage() {
 
   const [randomizerParam, setRandomizerParam] = useState<T.RandomizerParam | null>(null);  
 
-  const randomierResults = () => {
-    if (randomizerParam === null) {
-      // return <div>Please enter search parameters</div>
-      return;
-    } 
-    return (
-      <RandomizedRecipeResults 
-        randomizerParam={randomizerParam}
-      />
-    )
-  }
-
   const handleSetRandomizerParam = () => {
     if (prepTimeLimitInSecounds <= 0 || selectedFoodType === "default") {
       alert("Please enter valid inputs");
@@ -37,12 +25,11 @@ function RandomizePage() {
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center  text-gray-600 font-semibold ">
       {/* TODO: this should prob be a component */}
       <div className="flex justify-between items-center 
-                      bg-gradient-to-r from-gray-100 via-gray-200 to-yellow-200 rounded-xl
-                      text-gray-600 font-semibold 
-                      h-10 my-5 w-full
+                      bg-gradient-to-r from-gray-100 via-gray-200 to-yellow-200 rounded-xl                    
+                      h-10 my-3 w-full
                       "
       >
         <p className="pl-5">Preparation Time:</p>
@@ -55,8 +42,7 @@ function RandomizePage() {
       </div>
       <div className="flex justify-between items-center 
                       bg-gradient-to-r from-gray-100 via-gray-200 to-yellow-200 rounded-xl
-                      text-gray-700 font-semibold 
-                      h-10 my-5 w-full
+                      h-10 my-3 w-full
                       "
       >
         <p className="pl-5">Food Type:</p>
@@ -74,7 +60,15 @@ function RandomizePage() {
           onClick={ () => handleSetRandomizerParam()}
         />
       </div>
-      {randomierResults()}
+      <div className="my-5 w-full">
+        {
+          randomizerParam 
+          && 
+          <RandomizedRecipeResults 
+            randomizerParam={randomizerParam}
+          />
+        }
+      </div>
     </div>
   )
 }
