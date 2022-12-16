@@ -6,7 +6,8 @@ import { readDatabase, writeDatabase } from './database';
 import { randomizeRecipe } from './calculations';
 
 const app = Express();
-const port = 4000;
+const port = process.env.PORT ? parseInt(process.env.PORT) : 4000;
+const host = process.env.HOST ||  "127.0.0.1";
 
 // Serve static files from the latest production React app build
 app.use(Express.static(Path.join('..', 'recipe-app-client', 'build')));
@@ -202,8 +203,8 @@ app.get('/*', (_req, res) => {
 });
 
 // Run the server
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+app.listen(port, host, () => {
+    console.log(`Server running at host ${host} on port ${port}`);
 });
 
 
